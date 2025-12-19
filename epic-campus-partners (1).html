@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Partners | Epic for Kids</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            /* Epic Brand Colors */
+            --epic-blue: #0a96e6;
+            --coral: #EE2E60;
+            --purple: #3F1E56;
+            --yellow: #E6D02C;
+            --pink: #E9559B;
+            --green: #02613b;
+            --light-blue: #94D0D2;
+            --grey: #CBCCCE;
+            --black: #000000;
+            --white: #FFFFFF;
+        }
+        
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            background: var(--white);
+        }
+        
+        /* Header */
+        header {
+            background: var(--white);
+            padding: 1.5rem 2rem;
+            border-bottom: 3px solid var(--epic-blue);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .logo-link {
+            display: inline-block;
+        }
+        
+        .logo-svg {
+            height: 40px;
+            width: auto;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--epic-blue) 0%, var(--purple) 100%);
+            color: var(--white);
+            padding: 6rem 2rem 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Academic pattern background */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,0.03) 35px, rgba(255,255,255,0.03) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255,255,255,0.03) 35px, rgba(255,255,255,0.03) 70px);
+            opacity: 0.5;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Laurel wreaths decorations */
+        .laurel-left, .laurel-right {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 120px;
+            height: 150px;
+            opacity: 0.25;
+            z-index: 0;
+        }
+        
+        .laurel-left {
+            left: 5%;
+        }
+        
+        .laurel-right {
+            right: 5%;
+            transform: translateY(-50%) scaleX(-1);
+        }
+        
+        /* Academic icons floating */
+        .academic-icon {
+            position: absolute;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        .icon-book-1 {
+            top: 15%;
+            left: 10%;
+            width: 60px;
+            height: 60px;
+        }
+        
+        .icon-graduation {
+            top: 20%;
+            right: 15%;
+            width: 70px;
+            height: 70px;
+        }
+        
+        .icon-book-2 {
+            bottom: 20%;
+            left: 15%;
+            width: 50px;
+            height: 50px;
+        }
+        
+        .icon-quill {
+            bottom: 25%;
+            right: 10%;
+            width: 55px;
+            height: 55px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .hero h1 .highlight {
+            color: var(--yellow);
+            display: inline-block;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.15);
+        }
+        
+        /* Decorative border at bottom of hero */
+        .hero-border {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, 
+                var(--yellow) 0%, 
+                var(--coral) 25%, 
+                var(--pink) 50%, 
+                var(--coral) 75%, 
+                var(--yellow) 100%);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--coral);
+            color: var(--white);
+            padding: 1.25rem 3rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 4px solid var(--white);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(238,46,96,0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(238,46,96,0.4);
+        }
+        
+        /* Stats Bar */
+        .stats-bar {
+            background: var(--yellow);
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .stat {
+            color: var(--purple);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            padding: 5rem 2rem;
+            background: var(--white);
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--epic-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .section-header p {
+            font-size: 1.3rem;
+            color: var(--purple);
+        }
+        
+        .benefits-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        
+        .benefit-card {
+            background: var(--white);
+            border: 4px solid var(--epic-blue);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(10,150,230,0.1);
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(10,150,230,0.2);
+            border-color: var(--coral);
+        }
+        
+        .benefit-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--epic-blue);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .benefit-card:nth-child(2) .benefit-icon {
+            background: var(--coral);
+        }
+        
+        .benefit-card:nth-child(3) .benefit-icon {
+            background: var(--purple);
+        }
+        
+        .benefit-card:nth-child(4) .benefit-icon {
+            background: var(--pink);
+        }
+        
+        .benefit-card:nth-child(5) .benefit-icon {
+            background: var(--green);
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--purple);
+            margin-bottom: 1rem;
+        }
+        
+        .benefit-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        .benefit-card li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+            color: var(--black);
+        }
+        
+        .benefit-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--epic-blue);
+            font-weight: 700;
+        }
+        
+        /* Ambassador Program Highlight */
+        .ambassador-highlight {
+            background: linear-gradient(135deg, var(--coral) 0%, var(--pink) 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+        }
+        
+        .ambassador-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .ambassador-content h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+        
+        .ambassador-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+        
+        .ambassador-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .ambassador-item {
+            background: rgba(255,255,255,0.15);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .ambassador-item h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: var(--epic-blue);
+            color: var(--white);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+        
+        .cta-button-white {
+            display: inline-block;
+            background: var(--white);
+            color: var(--epic-blue);
+            padding: 1.25rem 3rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 4px solid var(--white);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            background: var(--yellow);
+        }
+        
+        /* Partners Section */
+        .partners {
+            padding: 5rem 2rem;
+            background: #f8f9fa;
+        }
+        
+        .partners-grid {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .partner-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 3px solid var(--grey);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 150px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .partner-card:hover {
+            border-color: var(--epic-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(10,150,230,0.15);
+        }
+        
+        .partner-card img {
+            max-width: 100%;
+            max-height: 80px;
+            object-fit: contain;
+        }
+        
+        .partner-placeholder {
+            font-weight: 600;
+            color: var(--purple);
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--purple);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-links {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--yellow);
+        }
+        
+        .copyright {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            /* Hide laurels on mobile, keep icons smaller */
+            .laurel-left, .laurel-right {
+                display: none;
+            }
+            
+            .academic-icon {
+                opacity: 0.1;
+            }
+            
+            .icon-book-1 {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .icon-graduation {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .icon-book-2 {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .icon-quill {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .benefits-grid,
+            .partners-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+            
+            .ambassador-benefits {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="https://getepic.com" class="logo-link">
+            <!-- REPLACE THIS LINE: Put your logo file path below -->
+            <img src="YOUR_LOGO_FILE_HERE.png" alt="Epic" class="logo-svg">
+            <!-- Example: <img src="epic_logo_blue_RGB.png" alt="Epic" class="logo-svg"> -->
+        </a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Laurel wreaths -->
+        <svg class="laurel-left" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50,10 Q30,30 25,50 Q20,70 22,90 Q24,110 30,130 Q32,120 35,110 Q38,100 42,90 Q45,80 48,70 Q50,60 50,50 Q50,40 48,30 Q46,20 50,10 Z" 
+                  fill="currentColor" opacity="0.8"/>
+            <path d="M50,10 Q40,25 38,40 Q36,55 40,70 Q42,60 44,50 Q46,40 48,30 Q49,20 50,10 Z" 
+                  fill="currentColor" opacity="0.6"/>
+            <ellipse cx="28" cy="60" rx="8" ry="12" fill="currentColor" opacity="0.7"/>
+            <ellipse cx="32" cy="80" rx="7" ry="11" fill="currentColor" opacity="0.7"/>
+            <ellipse cx="36" cy="100" rx="6" ry="10" fill="currentColor" opacity="0.7"/>
+            <ellipse cx="35" cy="40" rx="7" ry="11" fill="currentColor" opacity="0.7"/>
+        </svg>
+        
+        <svg class="laurel-right" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50,10 Q30,30 25,50 Q20,70 22,90 Q24,110 30,130 Q32,120 35,110 Q38,100 42,90 Q45,80 48,70 Q50,60 50,50 Q50,40 48,30 Q46,20 50,10 Z" 
+                  fill="currentColor" opacity="0.8"/>
+            <path d="M50,10 Q40,25 38,40 Q36,55 40,70 Q42,60 44,50 Q46,40 48,30 Q49,20 50,10 Z" 
+                  fill="currentColor" opacity="0.6"/>
+            <ellipse cx="28" cy="60" rx="8" ry="12" fill="currentColor" opacity="0.7"/>
+            <ellipse cx="32" cy="80" rx="7" ry="11" fill="currentColor" opacity="0.7"/>
+            <ellipse cx="36" cy="100" rx="6" ry="10" fill="currentColor" opacity="0.7"/>
+            <ellipse cx="35" cy="40" rx="7" ry="11" fill="currentColor" opacity="0.7"/>
+        </svg>
+        
+        <!-- Academic icons -->
+        <!-- Book stack -->
+        <svg class="academic-icon icon-book-1" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="35" width="40" height="8" rx="1" fill="currentColor"/>
+            <rect x="12" y="25" width="36" height="8" rx="1" fill="currentColor" opacity="0.8"/>
+            <rect x="14" y="15" width="32" height="8" rx="1" fill="currentColor" opacity="0.6"/>
+        </svg>
+        
+        <!-- Graduation cap -->
+        <svg class="academic-icon icon-graduation" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="35,15 10,28 35,41 60,28" fill="currentColor"/>
+            <rect x="32" y="28" width="6" height="20" fill="currentColor" opacity="0.8"/>
+            <polygon points="35,45 28,48 28,52 35,55 42,52 42,48" fill="currentColor" opacity="0.9"/>
+        </svg>
+        
+        <!-- Open book -->
+        <svg class="academic-icon icon-book-2" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5,10 Q5,8 7,8 L23,8 Q25,8 25,10 L25,38 Q25,40 23,40 L7,40 Q5,40 5,38 Z" 
+                  fill="currentColor"/>
+            <path d="M45,10 Q45,8 43,8 L27,8 Q25,8 25,10 L25,38 Q25,40 27,40 L43,40 Q45,40 45,38 Z" 
+                  fill="currentColor"/>
+            <line x1="10" y1="15" x2="20" y2="15" stroke="white" stroke-width="1" opacity="0.5"/>
+            <line x1="10" y1="20" x2="20" y2="20" stroke="white" stroke-width="1" opacity="0.5"/>
+            <line x1="30" y1="15" x2="40" y2="15" stroke="white" stroke-width="1" opacity="0.5"/>
+            <line x1="30" y1="20" x2="40" y2="20" stroke="white" stroke-width="1" opacity="0.5"/>
+        </svg>
+        
+        <!-- Quill pen -->
+        <svg class="academic-icon icon-quill" viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10,45 Q15,40 20,30 Q25,20 30,12 Q32,8 35,5 Q37,8 38,12 Q40,20 42,30 L38,32 L35,28 L32,32 L28,35 Q20,38 10,45 Z" 
+                  fill="currentColor"/>
+            <ellipse cx="12" cy="47" rx="4" ry="2" fill="currentColor" opacity="0.6"/>
+        </svg>
+        
+        <div class="hero-content">
+            <h1>Prepare Tomorrow's <span class="highlight">Reading Champions</span></h1>
+            <p class="subtitle">Partner with Epic to give your teacher candidates the tools, training, and confidence to transform literacy in their future classrooms.</p>
+            <a href="#become-partner" class="cta-button">Become a Campus Partner</a>
+        </div>
+        
+        <div class="hero-border"></div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="stats-container">
+            <div class="stat">
+                <div class="stat-number">40,000+</div>
+                <div class="stat-label">Quality Books</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Universities Joining</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">Free</div>
+                <div class="stat-label">Course Resources</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="section-header">
+            <h2>What Are the Benefits?</h2>
+            <p>Everything your teacher education program needs to prepare confident, capable reading educators.</p>
+        </div>
+        
+        <div class="benefits-grid">
+            <!-- Free Course Resources -->
+            <div class="benefit-card">
+                <div class="benefit-icon">📚</div>
+                <h3>Free Access to Epic Course Resources</h3>
+                <ul>
+                    <li>Complete library of 40,000+ high-quality books</li>
+                    <li>Unlimited access for all enrolled teacher candidates</li>
+                    <li>No cost to your department or students</li>
+                </ul>
+            </div>
+            
+            <!-- Ready-to-Use Materials -->
+            <div class="benefit-card">
+                <div class="benefit-icon">📋</div>
+                <h3>Ready-to-Use Instructional Resources</h3>
+                <ul>
+                    <li>Sample lesson plans for teaching reading with Epic</li>
+                    <li>Standardized classroom reading task templates</li>
+                    <li>Micro-teaching and instructional design assignments</li>
+                    <li>All materials aligned to best practices in literacy education</li>
+                </ul>
+            </div>
+            
+            <!-- Certification Program -->
+            <div class="benefit-card">
+                <div class="benefit-icon">🏆</div>
+                <h3>"Epic Classroom Reading Tools" Certification</h3>
+                <ul>
+                    <li>Digital certificates or badges for completing students</li>
+                    <li>Enhances course appeal and student employability</li>
+                    <li>Recognized credential for pre-service teachers</li>
+                    <li>Issued at the end of each semester</li>
+                </ul>
+            </div>
+            
+            <!-- Discount Opportunities -->
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <h3>Exclusive Discount Opportunities</h3>
+                <ul>
+                    <li>Special pricing on Epic School Plus subscriptions</li>
+                    <li>Multi-year discount options available</li>
+                    <li>Help your graduates get Epic in their first classrooms</li>
+                </ul>
+            </div>
+            
+            <!-- Admin Portal -->
+            <div class="benefit-card">
+                <div class="benefit-icon">📊</div>
+                <h3>Epic Admin Portal Access</h3>
+                <ul>
+                    <li>Track reading engagement across multiple teacher candidates</li>
+                    <li>Manage rosters and assignments efficiently</li>
+                    <li>Monitor student progress in real-time</li>
+                    <li>Generate reports for program assessment</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus Ambassador Program -->
+    <section class="ambassador-highlight">
+        <div class="ambassador-content">
+            <h2>🌟 Epic Campus Ambassador Program</h2>
+            <p>Select senior teacher candidates can serve as Epic Campus Ambassadors, gaining valuable leadership experience while promoting literacy education on campus.</p>
+            
+            <div class="ambassador-benefits">
+                <div class="ambassador-item">
+                    <h4>📝 Recommendation Letters</h4>
+                    <p>Faculty letters highlighting leadership and initiative</p>
+                </div>
+                <div class="ambassador-item">
+                    <h4>🎯 Internship Priority</h4>
+                    <p>Preferred placement in select school districts</p>
+                </div>
+                <div class="ambassador-item">
+                    <h4>🎓 Epic Certificates</h4>
+                    <p>Advanced Epic educator certifications</p>
+                </div>
+                <div class="ambassador-item">
+                    <h4>🎁 Branded Merchandise</h4>
+                    <p>Exclusive Epic gear and materials</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="become-partner">
+        <h2>Ready to Partner with Epic?</h2>
+        <p>Join universities across the country in preparing the next generation of reading educators.</p>
+        <a href="mailto:campus-partners@getepic.com" class="cta-button-white">Become a Campus Partner</a>
+    </section>
+
+    <!-- Current Partners -->
+    <section class="partners">
+        <div class="section-header">
+            <h2>Our Current Campus Partners</h2>
+            <p>Join these leading universities in preparing exceptional reading educators.</p>
+        </div>
+        
+        <div class="partners-grid">
+            <div class="partner-card">
+                <div class="partner-placeholder">NSU University School</div>
+            </div>
+            <div class="partner-card">
+                <div class="partner-placeholder">Tennessee Technological University</div>
+            </div>
+            <div class="partner-card">
+                <div class="partner-placeholder">Eastern Oregon University</div>
+            </div>
+            <div class="partner-card">
+                <div class="partner-placeholder">Friends University</div>
+            </div>
+            <div class="partner-card">
+                <div class="partner-placeholder">College of Education<br>Kansas State University</div>
+            </div>
+            <div class="partner-card">
+                <div class="partner-placeholder">En Nuestra Lengua Literacy Project<br>University of Michigan</div>
+            </div>
+            <div class="partner-card">
+                <div class="partner-placeholder">Rowan University</div>
+            </div>
+            <div class="partner-card">
+                <div class="partner-placeholder">Florida Atlantic University</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="https://getepic.com/educators">For Educators</a>
+            <a href="https://getepic.com/preservice">Pre-Service Teachers</a>
+            <a href="https://getepic.com/about">About Epic</a>
+            <a href="https://help.getepic.com">Support</a>
+        </div>
+        <div class="copyright">
+            © 2024 Epic Creations, Inc. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>
